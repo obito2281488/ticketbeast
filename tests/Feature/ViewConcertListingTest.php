@@ -13,8 +13,7 @@ class ViewConcertListingTest extends TestCase
 
     public function testUserCanSeePublishedConcertListing(): void
     {
-
-        $concert = Concert::create([
+        $concert = factory(Concert::class)->state('published')->create([
             'title' => $title = 'The Red Chord',
             'subtitle' => $subtitle = 'with Animosity and Lethargy',
             'date' => $date = Carbon::parse('December 13, 2021 8:00pm'),
@@ -24,7 +23,6 @@ class ViewConcertListingTest extends TestCase
             'city' => $city = 'Laraville',
             'state' => $state = 'ON',
             'zip' => $zip = '1488',
-            'published_at' => Carbon::parse('-1 week'),
             'additional_information' => $additional_information = 'For tickets, call (228) 1488-1337'
         ]);
 
