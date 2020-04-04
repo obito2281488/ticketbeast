@@ -46,4 +46,23 @@ class ConcertTest extends TestCase
 
         $this->assertEquals('5:00pm', $concert->getFormattedStartTime());
     }
+
+    public function testConcertsWithPublishedAtDateArePublished(): void
+    {
+        $publishedConcert1 = factory(Concert::class)->create([
+            'published_at' => Carbon::parse('-1 week')
+        ]);
+        $publishedConcert2 = factory(Concert::class)->create([
+            'published_at' => Carbon::parse('-1 week')
+        ]);
+        $unpublishConcert = factory(Concert::class)->create([
+            'published_at' => null
+        ]);
+
+        $publishedConcerts = Concert::published()->get();
+
+        $this->assertTrue($publishedConcerts->contains($publishedConcert1));
+        $this->assertTrue($publishedConcerts->contains($publishedConcert2));
+        $this->assertFalse($publishedConcerts->contains($unpublishConcert));
+    }
 }

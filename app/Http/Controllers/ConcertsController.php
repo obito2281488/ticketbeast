@@ -10,7 +10,7 @@ class ConcertsController extends Controller
 {
     public function show(int $id): View
     {
-        $concert = Concert::where('id', $id)->firstOrFail();
+        $concert = Concert::published()->findOrFail($id);
 
         return view('concerts.show')->with('concert', $concert);
     }
