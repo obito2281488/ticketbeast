@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Tests\Unit;
 
 
@@ -60,5 +59,16 @@ class ConcertTest extends TestCase
         $this->assertTrue($publishedConcerts->contains($publishedConcert1));
         $this->assertTrue($publishedConcerts->contains($publishedConcert2));
         $this->assertFalse($publishedConcerts->contains($unpublishConcert));
+
+    }
+
+    public function testCanOrderConcertTickets()
+    {
+        $concert = factory(Concert::class)->create();
+
+        $order = $concert->orderTickets($email = 'test@email.com', $amount = 3);
+
+        $this->assertEquals($email, $order->email);
+        $this->assertEquals($amount, $order->tickets()->count());
     }
 }

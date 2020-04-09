@@ -18,3 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/concerts/{id}', 'ConcertsController@show')->where('id', '[0-9]+');
+
+Route::post('/concerts/{id}/orders', 'ConcertOrdersController@store');
