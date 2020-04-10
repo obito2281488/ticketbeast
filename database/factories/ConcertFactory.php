@@ -28,7 +28,8 @@ $factory->define(\App\Concert::class, function (\Faker\Generator $faker) {
         'city' => 'Fakeville',
         'state' => 'ON',
         'zip' => '1488',
-        'additional_information' => 'Some simple additional information'
+        'additional_information' => 'Some simple additional information',
+        'available_ticket_quantity' => 50
     ];
 });
 
